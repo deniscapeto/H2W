@@ -13,6 +13,7 @@ class Tarjan:
     def get_critical_connections(self, connections):
         self.build_graph(connections)
 
+        # We can start with any node. So it can be node 1
         self.dfs(1, -1)
 
         return self.critical_connections
@@ -34,6 +35,8 @@ class Tarjan:
             if neighbor not in self.visited:
                 self.dfs(neighbor, current_node)
 
+                # The code below refers to the momento when we are backing after go deep in graph
+
                 self.lowTimes[current_node] = min(
                     self.lowTimes[current_node],
                     self.lowTimes[neighbor]
@@ -45,12 +48,11 @@ class Tarjan:
                     print(f'visitedTimes: {self.visitedTimes}')
                     print(f'    lowTimes: {self.lowTimes}')
 
-
-                    #self.critical_connections.append((current_node, neighbor))
-
-                    # IF NEIGHBOR HAS ANY CONNECTION OTHER THAN THE CURRENT NODE
-                    # IT MEANs that is we cut noeighbor node it will not disconect 
-                    # other node, and so creating another graph
+                    """
+                    IF NEIGHBOR HAS ANY CONNECTION OTHER THAN THE CURRENT NODE
+                    IT MEANs that if we cut neighbor node it will not disconect 
+                    other node, and so creating another graph
+                    """
                     if len(self.graph[neighbor]) > 1:
                         # NOT GRAPH EDGE (LIMITE)
                         self.critical_connections.append(neighbor)
@@ -60,6 +62,12 @@ class Tarjan:
             else: # back edge
 
                 print(f'Updating lowtime: {current_node}: {self.lowTimes[current_node]} -> {self.visitedTimes[neighbor]}')
+                """
+                This means the current node can be reach 
+                from another node that has already been visited
+                so we update lowTime of this node with the visitedTime of the 
+                neighbor if it is lower.
+                """
                 self.lowTimes[current_node] = min(
                     self.lowTimes[current_node], self.visitedTimes[neighbor]
                 )
@@ -71,14 +79,11 @@ class Tarjan:
             self.graph[connection[1]].append(connection[0])
 
 
-
 # connections = [[0,1],[1,2],[2,0],[1,3]]
 
 # connections = [[0,1],[1,2],[0,2],[1,3]]
 
 connections = [[1,2],[1,3],[2,3],[3,4],[4,5],[4,6],[5,7],[6,7],[7,8],[8,9],[8,10]]
-
-
 
 t = Tarjan()
 
