@@ -3,6 +3,7 @@ class SimpleHuman:
     def my_powers(self):
         print('I can walk and talk')
 
+
 class Superman():
 
     def __init__(self, super_power):
@@ -12,6 +13,7 @@ class Superman():
         print('I believe I can fly')
         self.super_power.my_powers()
 
+
 class Ironman():
 
     def __init__(self, super_power):
@@ -19,7 +21,8 @@ class Ironman():
 
     def my_powers(self):
         print("I believe I'm the best. I'm ironman")
-        self.super_power.my_powers()        
+        self.super_power.my_powers()
+
 
 if __name__ == "__main__":
 

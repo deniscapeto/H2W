@@ -16,7 +16,7 @@ response = sqs.receive_message(
         'All'
     ],
     VisibilityTimeout=5,
-    WaitTimeSeconds=0 # polling duration
+    WaitTimeSeconds=0  # polling duration
 )
 
 message = response['Messages'][0]

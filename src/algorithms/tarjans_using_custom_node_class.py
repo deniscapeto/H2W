@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import DefaultDict, Union, List
+from typing import DefaultDict, List, Union
+
 
 @dataclass
 class Node:
@@ -11,15 +12,22 @@ class Node:
     visited: bool = False
 
     def __str__(self) -> str:
-        return f'Node {self.number_id}, di: {self.discovery_index}, lo: {self.lowest_index_to_reach}, visited: {self.visited}, neighbor: {len( self.neighbors )} \n'
+        return (
+            f'Node {self.number_id}, '
+            'di: {self.discovery_index}, '
+            'lo: {self.lowest_index_to_reach}, '
+            'visited: {self.visited}, '
+            'neighbor: {len( self.neighbors )} \n'
+        )
 
     def __repr__(self) -> str:
         return self.__str__()
 
+
 class Tarjan:
 
     def __init__(self) -> None:
-        
+
         self.discovery_index = 0
         self.graph = DefaultDict(self.newNode)
 
@@ -31,12 +39,12 @@ class Tarjan:
             neighbors=[]
         )
         self.discovery_index += 1
-        return node        
+        return node
 
     critical_connections = set()
 
     def get_critical_connections(self, connections):
-   
+
         self.build_graph(connections)
 
         first_item = next(iter(self.graph.values()))
@@ -47,8 +55,8 @@ class Tarjan:
 
         return self.critical_connections
 
-    def dfs(self,current_node: Node, parent_node: Union[None, Node]):
-        
+    def dfs(self, current_node: Node, parent_node: Union[None, Node]):
+
         current_node.visited = True
 
         for neighbor in current_node.neighbors:
@@ -72,12 +80,12 @@ class Tarjan:
                     # Add as critical path if not edge (ponta do grafico)
                     if len(neighbor.neighbors) > 1:
                         self.critical_connections.add(neighbor.number_id)
-                    
+
                     self.critical_connections.add(current_node.number_id)
 
             else:
-                # back path 
-                # so o set that the lowest index to reach this 
+                # back path
+                # so o set that the lowest index to reach this
                 # node can be made by coming from this neighbor
                 current_node.lowest_index_to_reach = neighbor.discovery_index
                 # min(
@@ -98,7 +106,8 @@ class Tarjan:
             self.graph[connection[0]].neighbors.append(node2)
             self.graph[connection[1]].neighbors.append(node1)
 
-connections = [[0,1],[1,2],[2,0],[1,3]]
+
+connections = [[0, 1], [1, 2], [2, 0], [1, 3]]
 
 # connections = [[0,1],[1,2],[0,2],[1,3]]
 

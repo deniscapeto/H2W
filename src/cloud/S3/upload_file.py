@@ -1,6 +1,7 @@
+import os
+
 import boto3
 
-import os
 cwd = os.getcwd()
 
 

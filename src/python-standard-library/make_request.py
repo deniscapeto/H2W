@@ -1,5 +1,4 @@
 import requests
-import os
 
 body = {
     "summary": "Take out trash",

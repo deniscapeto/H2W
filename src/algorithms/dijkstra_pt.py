@@ -22,7 +22,7 @@ def pegar_caminho_mais_barato(grafo, custos, pais):
                 custos[vizinho] = novo_custo
 
                 pais[vizinho] = v
-        
+
         processados.append(v)
         v = pegar_vertice_filho_mais_barato_nao_processado(custos)
 
@@ -38,13 +38,13 @@ def gerar_caminho_pela_lista_de_pais(pais):
     while pai_do_fim != 'INICIO':
         lista.append(pai_do_fim)
         pai_do_fim = pais[pai_do_fim]
-    
+
     lista.append('INICIO')
 
     lista.reverse()
-    
+
     return lista
-     
+
 
 def pegar_vertice_filho_mais_barato_nao_processado(vertice):
 
@@ -52,7 +52,7 @@ def pegar_vertice_filho_mais_barato_nao_processado(vertice):
     vertice_mais_barato = None
 
     for filho in vertice.keys():
-        if vertice[filho] < menor_custo and filho not in processados :            
+        if vertice[filho] < menor_custo and filho not in processados:
             menor_custo = vertice[filho]
             vertice_mais_barato = filho
 
@@ -72,6 +72,8 @@ def preparar_variaveis_e_iniciar(grafo):
     pais['FIM'] = None
 
     lista = pegar_caminho_mais_barato(grafo, custos, pais)
+
+    print(lista)
 
 
 grafo = {

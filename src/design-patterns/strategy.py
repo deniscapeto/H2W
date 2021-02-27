@@ -7,20 +7,24 @@ class Amplifier:
         if self.instrument_input:
             self.instrument_input.play()
 
+
 class Guitar:
 
     def play(self):
         print('Playing the guitar...whah whah!')
+
 
 class Keyboard:
 
     def play(self):
         print('Playing the keyboard...tada!')
 
+
 class Saxophone:
 
     def play(self):
         print('Playing the saxophone...Wow!')
+
 
 if __name__ == "__main__":
 

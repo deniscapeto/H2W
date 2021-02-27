@@ -1,5 +1,6 @@
 from kafka import KafkaConsumer
 
+
 def read_all_messages():
     """
     LER TODAS AS MENSAGENS
@@ -10,7 +11,7 @@ def read_all_messages():
         enable_auto_commit=False
     )
     for msg in consumer:
-        print (msg)
+        print(msg)
 
 
 def listen_to_new_messages():
@@ -18,6 +19,7 @@ def listen_to_new_messages():
         'teste_kefka_python'
     )
     for msg in consumer:
-        print (msg)
+        print(msg)
+
 
 read_all_messages()

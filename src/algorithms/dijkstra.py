@@ -22,7 +22,7 @@ def get_best_path(graph, weights, parents):
                 weights[neighbor] = new_weight
 
                 parents[neighbor] = v
-        
+
         processed.append(v)
         v = get_best_child_vertex_not_processed(weights)
 
@@ -38,13 +38,13 @@ def create_best_path_from_parents(parents):
     while parents_end != 'BEGIN':
         best_path.append(parents_end)
         parents_end = parents[parents_end]
-    
+
     best_path.append('BEGIN')
 
     best_path.reverse()
-    
+
     return best_path
-     
+
 
 def get_best_child_vertex_not_processed(vertex):
 
@@ -52,7 +52,7 @@ def get_best_child_vertex_not_processed(vertex):
     best_vertex = None
 
     for child in vertex.keys():
-        if vertex[child] < best_weight and child not in processed :            
+        if vertex[child] < best_weight and child not in processed:
             best_weight = vertex[child]
             best_vertex = child
 
