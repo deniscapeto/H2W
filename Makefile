@@ -1,9 +1,6 @@
 install:
-	pip install -r requirements-dev.txt
+	poetry install
 
 lint:
-	isort src
-	flake8 src
-
-depend-tree:
-	pipdeptree
+	poetry run isort src
+	poetry run flake8 src
